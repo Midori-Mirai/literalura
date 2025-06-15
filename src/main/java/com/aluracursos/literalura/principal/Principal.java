@@ -8,10 +8,8 @@ import com.aluracursos.literalura.service.ConvierteDatos;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
     final String URL_BASE = "https://gutendex.com//books/";
@@ -35,8 +33,9 @@ public class Principal {
                     \n|||||****°°°°Bienvenidos al buscador de libros°°°°****|||||
                     Menú
                     1 - Ingresa el nombre del libro que deseas buscar.
-                    2 - Mostrar libros registrados
-                    3 - Mostrar autores registrados
+                    2 - Mostrar libros registrados.
+                    3 - Mostrar autores registrados.
+                    4 - Mostrar autores vivos después un determinado año.
                     0 - Salir""";
             System.out.println(menu);
             opcion = entrada.nextInt();
@@ -51,6 +50,8 @@ public class Principal {
                 case 3:
                     mostrarAutoresGuardados();
                     break;
+                case 4:
+                    mostrarAutoresPorFecha();
                 case 0:
                     System.out.println("Byeeeee!!!");
                     break;
@@ -115,5 +116,19 @@ public class Principal {
         autores.stream().sorted(Comparator.comparing(Autor::getNombre))
                         .forEach(System.out::println);
 //        autores.forEach(System.out::println);
+    }
+
+    private void mostrarAutoresPorFecha(){
+        System.out.println("Ingresa el año de nacimiento del autor: ");
+        var fechNac = entrada.nextInt();
+        List<Autor> autorPorFecha = autorRepository
+                .findByFechaNacGreaterThanEqual(fechNac);
+
+        if(!autorPorFecha.isEmpty()){
+            autorPorFecha.forEach(System.out::println);
+        }else{
+            System.out.println("No existen autores nacidos después de " + fechNac);
+        }
+
     }
 }

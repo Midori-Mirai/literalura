@@ -33,6 +33,9 @@ public class Autor {
         this.libros.add(libro);
     }
 
+    public List<Libro> getLibros() {
+        return libros;
+    }
 
     public String getNombre() {
         return nombre;
