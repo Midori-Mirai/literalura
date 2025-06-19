@@ -107,7 +107,6 @@ public class Principal {
     /*Muestra los libros guardados en la DB*/
     private void mostrarLibrosGuardados(){
         List<Libro> libros = repository.findAll();
-
         libros.forEach(System.out::println);
     }
 
