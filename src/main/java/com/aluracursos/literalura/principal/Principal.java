@@ -242,13 +242,7 @@ public class Principal {
             System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°Libro(s)°°°°°°°°°°°°°°°°°°°°°°°°");
         a.getLibros().forEach(l -> System.out.println("- " + l.getTitulo()));
             System.out.println("\n");});
-//        busquedaAutor.ifPresentOrElse(a -> {
-//                    System.out.println("Autor: " + a.getNombre() + "\nLibros -> " + a.getLibros().stream()
-//                            .map(Libro::getTitulo)
-//                            .collect(Collectors.toList()));},
-//                () -> {
-//                    System.out.println("¬¬¬¬¬Autor no encontrado¬¬¬¬¬");
-//                });
+//
     }
     public void  buscarLibrosPorDerechosDeAutor(Integer opcionCopyright){
         switch (opcionCopyright){
