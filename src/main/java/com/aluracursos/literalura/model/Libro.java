@@ -15,7 +15,8 @@ public class Libro {
 
     @Column(unique = true)
     private String titulo;
-    private List<String> idioma;
+    @Enumerated(EnumType.STRING)
+    private CategoriaIdioma idioma;
     private boolean derechosAutor;
     private Integer descargas;
     /*Porque aún no voy a ocupar esta Lista de Autor, luego quitamos Transient para usar la tabla de Autor*/
@@ -30,7 +31,7 @@ public class Libro {
     /*Constructor personalizado*/
     public Libro(DatosLibro datos){
         this.titulo = datos.titulo();
-        this.idioma = datos.idioma();
+        this.idioma = CategoriaIdioma.fromString(datos.idioma().getFirst());
         this.derechosAutor = datos.derechosAutor();
         this.descargas = datos.descargas();
     }
@@ -51,11 +52,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public List<String> getIdioma() {
+    public CategoriaIdioma getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(List<String> idioma) {
+    public void setIdioma(CategoriaIdioma idioma) {
         this.idioma = idioma;
     }
 
@@ -86,11 +87,11 @@ public class Libro {
     @Override
     public String toString() {
         return  "\n***********Libro***********" +
-                "\ntitulo = " + titulo +
-                "\ndatosAutor = " + autor.getNombre() +
-                "\nidioma = " + idioma +
-                "\nderechosAutor = " + derechosAutor +
-                "\ndescargas = " + descargas +
+                "\nTítulo = " + titulo +
+                "\nAutor = " + autor.getNombre() +
+                "\nIdioma = " + idioma +
+                "\nDerechos de autor = " + derechosAutor +
+                "\nDescargas = " + descargas +
                 "\n****************************";
 
     }
