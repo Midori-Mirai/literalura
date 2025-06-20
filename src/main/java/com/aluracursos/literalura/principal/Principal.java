@@ -83,6 +83,7 @@ public class Principal {
                     break;
                 case 4:
                     mostrarAutoresPorFecha();
+                    break;
                 case 5:
                     System.out.println(menuIdiomas);
                     var opcionIdioma = entrada.nextLine();
@@ -169,6 +170,8 @@ public class Principal {
         List<Autor> autores = autorRepository.findAll();
         autores.stream().sorted(Comparator.comparing(Autor::getNombre))
                 .forEach(System.out::println);
+        System.out.println("*****************************************************\n" +
+                "Existen " + autores.size() + " registrados");
 //        autores.forEach(System.out::println);
     }
 
@@ -180,6 +183,7 @@ public class Principal {
 
         if(!autorPorFecha.isEmpty()){
             autorPorFecha.forEach(System.out::println);
+            System.out.println("Existen " + autorPorFecha.size() + (autorPorFecha.size()==1 ? " autor" : " autores"));
         }else{
             System.out.println("No existen autores nacidos después de " + fechNac);
         }
@@ -188,6 +192,8 @@ public class Principal {
         CategoriaIdioma idiomaBuscado = CategoriaIdioma.fromEspanol(opcionIdioma);
         List<Libro> librosPorIdioma = repository.findByIdioma(idiomaBuscado);
         librosPorIdioma.forEach(System.out::println);
+        System.out.println("Existen " + librosPorIdioma.size() + (librosPorIdioma.size()==1 ? " libro" : " libros")
+        + " en " + opcionIdioma);
     }
 
     private void mostrarStatsDeLibrosEnBD(){
