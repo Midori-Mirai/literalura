@@ -1,5 +1,6 @@
 <h1 align="center"> LiterAlura </h1>
-![Literalura](./assets/Literalura.png)
+![Literalura.png](assets/Literalura.png)
+
 
 #challengeOneLiterAluralatam8
 
